@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Webcam Stream</title>
+    <style>
+        .container {
+            position: relative;
+            width: 640px;
+            height: 480px;
+        }
+        .timestamp {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 5px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Webcam Stream</h1>
+    <div class="container">
+        <img src="{{ url_for('video_feed') }}" width="640" height="480">
+        <div class="timestamp" id="timestamp"></div>
+    </div>
+    <script>
+        function updateTimestamp() {
+            const timestampElement = document.getElementById('timestamp');
+            const now = new Date();
+            const formattedTimestamp = now.toLocaleString();
+            timestampElement.textContent = formattedTimestamp;
+        }
+        setInterval(updateTimestamp, 1000); // Update every second
+    </script>
+</body>
+</html>
+
